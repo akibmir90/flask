@@ -2,6 +2,7 @@ import glob
 import os
 import subprocess
 from base64 import b64encode
+import sys
 
 def generate_animation(image_name, audio_file):
     # Get the absolute path of the current script's directory
@@ -18,12 +19,16 @@ def generate_animation(image_name, audio_file):
     # Get the absolute path of the image
     img_path = os.path.join(current_directory, 'examples', 'source_image', f'{image_name}.png')
 
-    # Run the inference command
-    subprocess.run([
-        'python3.8', 'inference.py', '--driven_audio', audio_file_path,
+    # Specify the command to run based on the Python interpreter in the environment
+    python_interpreter = sys.executable
+    command = [
+        python_interpreter, 'inference.py', '--driven_audio', audio_file_path,
         '--source_image', img_path, '--result_dir', os.path.join(current_directory, 'results'),
         '--still', '--preprocess', 'full', '--enhancer', 'gfpgan'
-    ])
+    ]
+
+    # Run the inference command
+    subprocess.run(command)
 
     # Get the generated animation
     results = sorted(os.listdir(os.path.join(current_directory, 'results')))
