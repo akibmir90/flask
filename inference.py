@@ -36,8 +36,11 @@ def generate_animation(image_name, audio_file):
 
     # Get the generated animation
     results = sorted(os.listdir(results_folder))
-    mp4_name = glob.glob(os.path.join(results_folder, '*.mp4'))[0]
+    mp4_files = glob.glob(os.path.join(results_folder, '*.mp4'))
+    if not mp4_files:
+        raise ValueError('No animation files were generated.')
 
+    mp4_name = mp4_files[0]
     # Get the base64 encoded video data
     mp4 = open(mp4_name, 'rb').read()
     animation_url = "data:video/mp4;base64," + b64encode(mp4).decode()
