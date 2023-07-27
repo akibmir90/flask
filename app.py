@@ -13,7 +13,7 @@ def get_available_images():
     # Get a list of available image names from the source_image folder
     current_directory = os.path.dirname(os.path.abspath(__file__))
     source_image_folder = os.path.join(current_directory, 'examples', 'source_image')
-    img_list = [img_name.split('.')[0] for img_name in os.listdir(source_image_folder) if img_name.endswith('.png')]
+    img_list = [img_name.split('.')[0] for img_name in os.listdir(source_image_folder) if img_name.endswith('.jpg')]
     return img_list
 
 @app.route('/generate_animation', methods=['POST'])
