@@ -1,3 +1,5 @@
+# inference.py
+
 import glob
 import os
 from base64 import b64encode
@@ -10,15 +12,14 @@ def generate_animation(image_name, audio_file):
     img = f'examples/source_image/{image_name}.jpg'
 
     # Call the inference function directly instead of using subprocess.run()
-    your_inference_function(audio_file.filename, img)
+    animation_path = your_inference_function(audio_file.filename, img)
 
-    results = sorted(os.listdir('./results/'))
-    mp4_files = glob.glob('./results/*.mp4')
-
-    if mp4_files:
-        mp4_name = mp4_files[0]
-        mp4 = open(f'{mp4_name}', 'rb').read()
+    # Check if the animation was generated successfully
+    if animation_path:
+        # Animation was generated, read the video file and encode it
+        mp4 = open(animation_path, 'rb').read()
         animation_url = "data:video/mp4;base64," + b64encode(mp4).decode()
         return animation_url
     else:
+        # Animation was not generated successfully
         return None
