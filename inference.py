@@ -7,7 +7,7 @@ def generate_animation(image_name, audio_file):
     # Assuming the audio file is saved in the 'driven_audio' folder
     audio_file.save(f'examples/driven_audio/{audio_file.filename}')
 
-    img = f'examples/source_image/{image_name}.png'
+    img = f'examples/source_image/{image_name}.jpg'
 
     # Call the inference function directly instead of using subprocess.run()
     your_inference_function(audio_file.filename, img)
