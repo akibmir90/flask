@@ -27,12 +27,16 @@ def generate_animation(image_name, audio_file):
         '--still', '--preprocess', 'full', '--enhancer', 'gfpgan'
     ]
 
+    # Create the 'results' folder if it doesn't exist
+    results_folder = os.path.join(current_directory, 'results')
+    os.makedirs(results_folder, exist_ok=True)
+
     # Run the inference command
     subprocess.run(command)
 
     # Get the generated animation
-    results = sorted(os.listdir(os.path.join(current_directory, 'results')))
-    mp4_name = glob.glob(os.path.join(current_directory, 'results', '*.mp4'))[0]
+    results = sorted(os.listdir(results_folder))
+    mp4_name = glob.glob(os.path.join(results_folder, '*.mp4'))[0]
 
     # Get the base64 encoded video data
     mp4 = open(mp4_name, 'rb').read()
