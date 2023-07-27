@@ -14,8 +14,12 @@ def generate_animation_endpoint():
     if request.method == 'POST':
         image_name = request.form['image_name']
         audio_file = request.files['audio']
-        animation_url = generate_animation(image_name, audio_file)
-        return jsonify({'animation_url': animation_url})
+
+        if image_name and audio_file:
+            animation_url = generate_animation(image_name, audio_file)
+            return jsonify({'animation_url': animation_url})
+        else:
+            return jsonify({'error': 'Please select both an image and an audio file.'})
 
 if __name__ == '__main__':
     app.run(debug=True)
