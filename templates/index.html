@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SadTalker Animation</title>
+</head>
+<body>
+    <h1>SadTalker Animation</h1>
+    <form action="/generate_animation" method="POST" enctype="multipart/form-data">
+        <label for="image_name">Select an image:</label>
+        <select id="image_name" name="image_name">
+            {% for img_name in img_list %}
+                <option value="{{ img_name }}">{{ img_name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="audio">Select an audio file:</label>
+        <input type="file" id="audio" name="audio">
+        <br>
+        <input type="submit" value="Generate Animation">
+    </form>
+</body>
+</html>
