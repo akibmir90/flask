@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    img_list = ['boy.jpg', '...']  # List of available image names, you need to add the actual names
+    img_list = ['boy', '...']  # List of available image names, you need to add the actual names
     return render_template('index.html', img_list=img_list)
 
 @app.route('/generate_animation', methods=['POST'])
