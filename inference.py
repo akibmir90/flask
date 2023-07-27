@@ -20,7 +20,7 @@ def generate_animation(image_name, audio_file):
     audio_file.save(audio_file_path)
 
     # Get the absolute path of the image
-    img_path = os.path.join(app_directory, 'examples', 'source_image', f'{image_name}.png')
+    img_path = os.path.join(app_directory, 'examples', 'source_image', f'{image_name}.jpg')
 
     # Specify the command to run based on the Python interpreter in the environment
     python_interpreter = sys.executable
