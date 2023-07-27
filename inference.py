@@ -16,19 +16,22 @@ def generate_animation(image_name, audio_file):
     audio_file_path = os.path.join(driven_audio_folder, audio_file.filename)
     audio_file.save(audio_file_path)
 
+    # Get the absolute path of the 'examples' folder
+    examples_directory = os.path.abspath(os.path.join(current_directory, 'examples'))
+
     # Get the absolute path of the image
-    img_path = os.path.join(current_directory, 'examples', 'source_image', f'{image_name}.png')
+    img_path = os.path.join(examples_directory, 'source_image', f'{image_name}.png')
 
     # Specify the command to run based on the Python interpreter in the environment
     python_interpreter = sys.executable
     command = [
         python_interpreter, 'inference.py', '--driven_audio', audio_file_path,
-        '--source_image', img_path, '--result_dir', os.path.join(current_directory, 'results'),
+        '--source_image', img_path, '--result_dir', os.path.join(examples_directory, 'results'),
         '--still', '--preprocess', 'full', '--enhancer', 'gfpgan'
     ]
 
     # Create the 'results' folder if it doesn't exist
-    results_folder = os.path.join(current_directory, 'results')
+    results_folder = os.path.join(examples_directory, 'results')
     os.makedirs(results_folder, exist_ok=True)
 
     # Run the inference command
