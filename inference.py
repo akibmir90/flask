@@ -1,7 +1,7 @@
 import glob
 import os
 from base64 import b64encode
-from common import your_inference_function # Replace 'your_inference_function' with the actual function name from inference.py
+from common import your_inference_function
 
 def generate_animation(image_name, audio_file):
     # Assuming the audio file is saved in the 'driven_audio' folder
@@ -13,9 +13,12 @@ def generate_animation(image_name, audio_file):
     your_inference_function(audio_file.filename, img)
 
     results = sorted(os.listdir('./results/'))
-    mp4_name = glob.glob('./results/*.mp4')[0]
+    mp4_files = glob.glob('./results/*.mp4')
 
-    mp4 = open(f'{mp4_name}', 'rb').read()
-    animation_url = "data:video/mp4;base64," + b64encode(mp4).decode()
-
-    return animation_url
+    if mp4_files:
+        mp4_name = mp4_files[0]
+        mp4 = open(f'{mp4_name}', 'rb').read()
+        animation_url = "data:video/mp4;base64," + b64encode(mp4).decode()
+        return animation_url
+    else:
+        return None
