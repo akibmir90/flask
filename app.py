@@ -8,8 +8,11 @@ def get_available_images():
     # Get the absolute path of the current script's directory
     current_directory = os.path.dirname(os.path.abspath(__file__))
 
+    # Get the absolute path of the 'SadTalker_Flask_App' directory
+    app_directory = os.path.abspath(os.path.join(current_directory, os.pardir))
+
     # Get the absolute path of the 'examples/source_image' folder
-    source_image_folder = os.path.join(current_directory, 'examples', 'source_image')
+    source_image_folder = os.path.join(app_directory, 'examples', 'source_image')
 
     # List all image names in the folder with .jpg extension
     img_list = [img_name.split('.')[0] for img_name in os.listdir(source_image_folder) if img_name.endswith('.jpg')]
