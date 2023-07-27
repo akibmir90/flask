@@ -1,7 +1,7 @@
 import glob
 import os
 from base64 import b64encode
-from inference import your_inference_function  # Replace 'your_inference_function' with the actual function name from inference.py
+from common import your_inference_function # Replace 'your_inference_function' with the actual function name from inference.py
 
 def generate_animation(image_name, audio_file):
     # Assuming the audio file is saved in the 'driven_audio' folder

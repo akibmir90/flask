@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from inference import generate_animation
+from common import your_inference_function
 
 app = Flask(__name__)
 
